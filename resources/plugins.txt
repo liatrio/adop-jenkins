@@ -61,7 +61,7 @@ gatling:1.2.0
 gerrit-trigger:2.22.0
 git-client:2.4.6
 git-server:1.7
-git:3.0.0
+git:3.3.0
 github-api:1.77
 github-branch-source:1.10
 github-oauth:0.24
