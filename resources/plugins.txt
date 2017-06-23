@@ -69,7 +69,7 @@ github-organization-folder:1.5
 github:1.27.0
 global-build-stats:1.4
 greenballs:1.15
-groovy:2.00
+groovy:2.0
 handlebars:1.1.1
 htmlpublisher:1.11
 icon-shim:2.0.3
