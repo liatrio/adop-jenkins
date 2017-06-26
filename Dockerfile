@@ -17,9 +17,8 @@ COPY resources/views/ /usr/share/jenkins/ref/init.groovy.d/
 COPY resources/m2/ /usr/share/jenkins/ref/.m2
 COPY resources/entrypoint.sh /entrypoint.sh
 COPY resources/scriptApproval.xml /usr/share/jenkins/ref/
-COPY resources/maven-global-settings-files.xml org.jenkinsci.plugins.configfiles.GlobalConfigFiles.xml
+COPY resources/maven-global-settings-files.xml /usr/share/jenkins/ref/org.jenkinsci.plugins.configfiles.GlobalConfigFiles.xml
 COPY resources/theme_config.xml /var/jenkins_home/org.codefirst.SimpleThemeDecorator.xml
-
 
 # Reprotect
 USER root
@@ -30,6 +29,10 @@ RUN curl -fsSL https://get.docker.com/ | sh
 
 # Give jenkins staff permission to run docker
 RUN usermod -aG staff jenkins
+
+# Install docker-compose
+RUN curl -L https://github.com/docker/compose/releases/download/1.6.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && \
+    chmod +x /usr/local/bin/docker-compose
 
 # USER jenkins
 
