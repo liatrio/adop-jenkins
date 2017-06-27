@@ -34,6 +34,7 @@ pipeline-stage-view:2.8
 plain-credentials:1.4
 scm-api:2.1.1
 script-security:1.29
+simple-theme-plugin:0.3
 ssh-credentials:1.13
 structs:1.8
 token-macro:2.1
