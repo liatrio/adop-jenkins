@@ -1,6 +1,6 @@
 # Supported tags and respective `Dockerfile` links
 
-- [`2.1.2`(*2.1.0/Dockerfile*)](https://github.com/Accenture/adop-jenkins/Dockerfile)
+- [`2.1.3`(*2.1.0/Dockerfile*)](https://github.com/Accenture/adop-jenkins/Dockerfile)
 
 # What is adop-jenkins?
 
