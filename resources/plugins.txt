@@ -48,3 +48,4 @@ workflow-multibranch:2.16
 workflow-scm-step:2.5
 workflow-step-api:2.11
 workflow-support:2.14
+swarm:3.4
