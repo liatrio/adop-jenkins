@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.3.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>https://github.com/liatrio/liatrio-build-seedjob.git</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.63">
+      <scriptText>folder = folder(&quot;pipelineJobs&quot;) {
+  authorization {
+    permission(&apos;hudson.model.View.Delete:administrators&apos;)
+    permission(&apos;com.cloudbees.plugins.credentials.CredentialsProvider.Update:administrators&apos;)
+    permission(&apos;hudson.model.View.Delete:administrators&apos;)
+    permission(&apos;hudson.model.Item.Create:administrators&apos;)
+    permission(&apos;hudson.model.Run.Delete:administrators&apos;)
+    permission(&apos;hudson.model.Item.Workspace:administrators&apos;)
+    permission(&apos;com.cloudbees.plugins.credentials.CredentialsProvider.Delete:administrators&apos;)
+    permission(&apos;com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains:administrators&apos;)
+    permission(&apos;hudson.model.View.Configure:administrators&apos;)
+    permission(&apos;hudson.model.Run.Replay:administrators&apos;)
+    permission(&apos;hudson.model.Item.Configure:administrators&apos;)
+    permission(&apos;hudson.model.View.Read:administrators&apos;)
+    permission(&apos;hudson.model.View.Create:administrators&apos;)
+    permission(&apos;hudson.model.Item.Cancel:administrators&apos;)
+    permission(&apos;hudson.model.Item.Delete:administrators&apos;)
+    permission(&apos;hudson.model.Item.Read:administrators&apos;)
+    permission(&apos;com.cloudbees.plugins.credentials.CredentialsProvider.View:administrators&apos;)
+    permission(&apos;com.cloudbees.plugins.credentials.CredentialsProvider.Create:administrators&apos;)
+    permission(&apos;hudson.model.Item.Build:administrators&apos;)
+    permission(&apos;hudson.scm.SCM.Tag:administrators&apos;)
+    permission(&apos;hudson.model.Item.Move:administrators&apos;)
+    permission(&apos;hudson.model.Item.Discover:administrators&apos;)
+    permission(&apos;hudson.model.Run.Update:administrators&apos;)
+  }
+  properties {
+    folderLibraries {
+        libraries {
+            libraryConfiguration {
+                name(&apos;example_sharing&apos;)
+                retriever {
+                    modernSCM {
+                        scm {
+                            git {
+                                id(&apos;73a88996-5cc1-4624-8fb5-8a148776e26e&apos;)
+                                remote(&apos;https://github.com/liatrio/pipeline-library.git&apos;)
+                                credentialsId(&apos;&apos;)
+                                remoteName(&apos;pipeline-library&apos;)
+                                rawRefSpecs(&apos;+refs/heads/*:refs/remotes/origin/*&apos;)
+                                includes(&apos;*&apos;)
+                                excludes(&apos;&apos;)
+                                ignoreOnPushNotifications(false)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+  }
+}
+
+def repos = readFileFromWorkspace(&quot;repos.txt&quot;).split()
+
+repos.each { repo-&gt;
+  def jobName = repo.split(&quot;/&quot;)[4].replaceAll(&quot;.git&quot;, &quot;&quot;)
+  def branch = repo.split(&quot;/&quot;)[5]
+  pipelineJob(&quot;pipelineJobs/${jobName}&quot;){
+    definition {
+      cpsScm {
+        scm {
+          git(repo, branch, null)
+        }
+        scriptPath(&apos;Jenkinsfile&apos;)
+      }
+    }
+  }
+}</scriptText>
+      <usingScriptText>true</usingScriptText>
+      <sandbox>false</sandbox>
+      <ignoreExisting>false</ignoreExisting>
+      <ignoreMissingFiles>false</ignoreMissingFiles>
+      <failOnMissingPlugin>false</failOnMissingPlugin>
+      <unstableOnDeprecation>false</unstableOnDeprecation>
+      <removedJobAction>IGNORE</removedJobAction>
+      <removedViewAction>IGNORE</removedViewAction>
+      <removedConfigFilesAction>IGNORE</removedConfigFilesAction>
+      <lookupStrategy>JENKINS_ROOT</lookupStrategy>
+    </javaposse.jobdsl.plugin.ExecuteDslScripts>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>
