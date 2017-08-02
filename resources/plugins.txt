@@ -14,6 +14,7 @@ git-client:2.4.6
 git-server:1.7
 handlebars:1.1.1
 icon-shim:2.0.3
+job-dsl:1.63
 jquery-detached:1.2.1
 junit:1.20
 mailer:1.20
@@ -48,3 +49,4 @@ workflow-multibranch:2.16
 workflow-scm-step:2.5
 workflow-step-api:2.11
 workflow-support:2.14
+swarm:3.4

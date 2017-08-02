@@ -1,6 +1,6 @@
 FROM jenkins:2.7.4
 
-MAINTAINER Nick Griffin, <nicholas.griffin>
+LABEL maintainer Liatrio 
 
 ENV GERRIT_HOST_NAME gerrit
 ENV GERRIT_PORT 8080
@@ -28,8 +28,6 @@ RUN chmod +x /var/jenkins_home/latest-artifact.sh
 # Install Docker
 RUN curl -fsSL https://get.docker.com/ | sh
 
-# Give jenkins staff permission to run docker
-RUN usermod -aG staff jenkins
 
 # USER jenkins
 
