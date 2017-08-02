@@ -28,6 +28,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.63">
+      <targets>**/*.groovy</targets>
       <scriptText>folder = folder(&quot;pipelineJobs&quot;) {
   authorization {
     permission(&apos;hudson.model.View.Delete:administrators&apos;)
@@ -97,7 +98,7 @@ repos.each { repo-&gt;
     }
   }
 }</scriptText>
-      <usingScriptText>true</usingScriptText>
+      <usingScriptText>false</usingScriptText>
       <sandbox>false</sandbox>
       <ignoreExisting>false</ignoreExisting>
       <ignoreMissingFiles>false</ignoreMissingFiles>
