@@ -6,6 +6,7 @@ import hudson.util.Secret;
 import com.cloudbees.plugins.credentials.SystemCredentialsProvider;
 import com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl;
 import com.cloudbees.plugins.credentials.CredentialsScope;
+import javaposse.jobdsl.plugin.GlobalJobDslSecurityConfiguration
 
 // Check if enabled
 def env = System.getenv()
@@ -24,10 +25,12 @@ def ldap_groupSearchFilter = env['LDAP_GROUP_SEARCH_FILTER']
 def ldap_groupMembershipFilter = env['LDAP_GROUP_MEMBERSHIP_FILTER']
 def ldap_managerDN = env['LDAP_MANAGER_DN']
 def ldap_managerPassword = env['LDAP_MANAGER_PASSWORD']
-def ldap_inhibitInferRootDN = env['LDAP_INHIBIT_INFER_ROOTDN'].toBoolean()
-def ldap_disableMailAddressResolver = env['LDAP_DISABLE_MAIL_ADDRESS_RESOLVER'].toBoolean()
 def ldap_displayNameAttributeName = env['LDAP_DISPLAY_NAME_ATTRIBUTE_NAME']
 def ldap_mailAddressAttributeName = env['LDAP_MAIL_ADDRESS_ATTRIBUTE_NAME']
+
+def ldap_inhibitInferRootDN = false
+def ldap_disableMailAddressResolver = false
+
 
 // Constants
 def instance = Jenkins.getInstance()
@@ -87,12 +90,64 @@ Thread.start {
 
     instance.setSecurityRealm(ldapRealm)
 
-    // If no authorisation strategy is in place, default to "Authenticated users can do anything"
+
+    // If no authorisation strategy is in place, setup Admin permissions via matrix-auth
     def authStrategy = Hudson.instance.getAuthorizationStrategy()
 
     if (authStrategy instanceof AuthorizationStrategy.Unsecured) {
-      println "Defaulting to 'Authenticated users can do anything' rather than 'unsecure'."
-      instance.setAuthorizationStrategy(new FullControlOnceLoggedInAuthorizationStrategy())
+
+      //specify project matrix-auth
+      def strategy = new hudson.security.ProjectMatrixAuthorizationStrategy()
+
+      //get the current admin user information from environment
+      def username = System.getenv("INITIAL_ADMIN_USER")
+      def password = System.getenv("INITIAL_ADMIN_PASSWORD")
+
+      /* Set permissions for Jenkins */
+
+      //Overall
+      strategy.add(Jenkins.ADMINISTER, username)
+      strategy.add(Jenkins.RUN_SCRIPTS, username)
+      strategy.add(Jenkins.READ, username)
+
+      //Anon permissions (readonly)
+      strategy.add(Jenkins.READ, 'anonymous')
+      strategy.add(hudson.model.Item.READ, 'anonymous')
+      strategy.add(hudson.model.View.READ, 'anonymous')
+
+      //Jobs
+      strategy.add(hudson.model.Item.BUILD, username)
+      strategy.add(hudson.model.Item.CANCEL, username)
+      strategy.add(hudson.model.Item.CONFIGURE, username)
+      strategy.add(hudson.model.Item.CREATE, username)
+      strategy.add(hudson.model.Item.DELETE, username)
+      strategy.add(hudson.model.Item.DISCOVER, username)
+      strategy.add(hudson.model.Item.EXTENDED_READ, username)
+      strategy.add(hudson.model.Item.READ, username)
+      strategy.add(hudson.model.Item.WIPEOUT, username)
+      strategy.add(hudson.model.Item.WORKSPACE, username)
+
+      //View
+      strategy.add(hudson.model.View.CONFIGURE, username)
+      strategy.add(hudson.model.View.CREATE, username)
+      strategy.add(hudson.model.View.DELETE, username)
+      strategy.add(hudson.model.View.READ, username)
+
+      //Run
+      strategy.add(hudson.model.Run.DELETE, username)
+      strategy.add(hudson.model.Run.UPDATE, username)
+      strategy.add(hudson.model.Run.ARTIFACTS, username)
+
+      //SCM
+      strategy.add(hudson.scm.SCM.TAG, username)
+
+      //Manage Plugins
+      strategy.add(hudson.PluginManager.UPLOAD_PLUGINS, username)
+      strategy.add(hudson.PluginManager.CONFIGURE_UPDATECENTER, username)
+
+      //set strategy
+      instance.setAuthorizationStrategy(strategy)
+      GlobalConfiguration.all().get(GlobalJobDslSecurityConfiguration.class).useScriptSecurity=false
     }
 
     // Save the state
