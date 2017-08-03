@@ -152,4 +152,7 @@ Thread.start {
 
     // Save the state
     instance.save()
+
+    println 'git config --global user.email "jenkins@jenkins.com"'.execute().text
+    println 'git config --global user.name "jenkins"'.execute().text
 }
