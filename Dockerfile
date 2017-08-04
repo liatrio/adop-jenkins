@@ -18,10 +18,12 @@ COPY resources/m2/ /usr/share/jenkins/ref/.m2
 COPY resources/entrypoint.sh /entrypoint.sh
 COPY resources/scriptApproval.xml /usr/share/jenkins/ref/
 COPY resources/maven-global-settings-files.xml /usr/share/jenkins/ref/org.jenkinsci.plugins.configfiles.GlobalConfigFiles.xml
+COPY resources/latest-artifact.sh /var/jenkins_home/
 
 # Reprotect
 USER root
 RUN chmod +x -R /usr/share/jenkins/ref/adop_scripts/ && chmod +x /entrypoint.sh
+RUN chmod +x /var/jenkins_home/latest-artifact.sh
 
 # Install Docker
 RUN curl -fsSL https://get.docker.com/ | sh
