@@ -18,6 +18,7 @@ COPY resources/m2/ /usr/share/jenkins/ref/.m2
 COPY resources/entrypoint.sh /entrypoint.sh
 COPY resources/scriptApproval.xml /usr/share/jenkins/ref/
 COPY resources/maven-global-settings-files.xml /usr/share/jenkins/ref/org.jenkinsci.plugins.configfiles.GlobalConfigFiles.xml
+COPY resources/theme_config.xml /var/jenkins_home/org.codefirst.SimpleThemeDecorator.xml
 COPY resources/latest-artifact.sh /var/jenkins_home/
 
 # Reprotect
