@@ -7,6 +7,8 @@
 ldop-jenkins is a wrapper for the Jenkins image. It has primarily been built to perform extended configuration.
 Jenkins is an open source automation tool.
 
+VERSION 2.2.5
+
 # How to use this image
 
 The easiest for to run ldop-jenkins image is as follow:
