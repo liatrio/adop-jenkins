@@ -115,6 +115,9 @@ Thread.start {
       strategy.add(hudson.model.Item.READ, 'anonymous')
       strategy.add(hudson.model.View.READ, 'anonymous')
 
+      //Jenkins User permissions (build only)
+      strategy.add(hudson.model.Item.BUILD, 'jenkins')
+
       //Jobs
       strategy.add(hudson.model.Item.BUILD, username)
       strategy.add(hudson.model.Item.CANCEL, username)
