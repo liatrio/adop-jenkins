@@ -99,8 +99,6 @@ pipeline {
                 script {
                     TAG = readFile 'result'
                     TAG = TAG.trim()
-  
-                    CHANGED = "NO"
                   
                     if (!(TAG ==~ /^[0-9]+\.[0-9]+\.[0-9]+$/)) {
                         error("Invalid Git tag format! Aborting...")
@@ -157,8 +155,6 @@ pipeline {
                 script {
                   DIR = readFile 'result'
                   DIR = DIR.trim()
-
-                  CHANGED = "NO"
                 }
                 testSuite("ldop-jenkins", "${TAG}", "${DIR}")
                 sh "export TF_VAR_branch_name=\"${env.BRANCH_NAME}\""
