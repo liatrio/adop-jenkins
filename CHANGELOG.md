@@ -29,7 +29,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - added seedjob
 - added matrix security configuration
 
-## 2.2.1 - 2017-08-25
+## 2.2.7 - 2017-08-25
 ## Added
 - logstash plugin
 - mask passwords plugin
