@@ -28,3 +28,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - updated plugins (matrix-auth, ldap)
 - added seedjob
 - added matrix security configuration
+
+## 2.2.6 - 2017-08-23
+### Added
+- updated jenkins user to have permission for build jobs
+
