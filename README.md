@@ -1,16 +1,17 @@
-# making a new branch to deploy to artifactory
 # Supported tags and respective `Dockerfile` links
 
-- [`0.2.0`, `0.2.0` (*0.2.0/Dockerfile*)](https://github.com/Accenture/adop-jenkins/blob/0.2.0/Dockerfile)
+- [`2.2.7` (*0.2.0/Dockerfile*)](https://github.com/liatrio/ldop-jenkins/blob/0.2.0/Dockerfile)
 
-# What is adop-jenkins?
+# What is ldop-jenkins?
 
-adop-jenkins is a wrapper for the Jenkins image. It has primarily been built to perform extended configuration.
+ldop-jenkins is a wrapper for the Jenkins image. It has primarily been built to perform extended configuration.
 Jenkins is an open source automation tool.
+
+VERSION 2.2.7
 
 # How to use this image
 
-The easiest for to run adop-jenkins image is as follow:
+The easiest for to run ldop-jenkins image is as follow:
 ```
 docker run --name <your-container-name> -d -p 8080:8080 liatrio/ldop-jenkins:VERSION
 ```
@@ -73,13 +74,13 @@ Additional environment variables that allow fine tune Jenkins runtime configurat
 * DOCKER_NETWORK_NAME, the Docker custom network to launch containers on
 * GROOVY_VERSION, a comma delimited list of Groovy installation profiles to install (e.g. 2.4.8, 2.4.3).
 
-## Run adop-jenkins with OpenLDAP
+## Run ldop-jenkins with OpenLDAP
 The following assumes that MySQL and OpenLDAP are running.
 
-The following command will run adop-jenkins and connect it to OpenLDAP
+The following command will run ldop-jenkins and connect it to OpenLDAP
 ```
   docker run \
-  --name adop-jenkins \
+  --name ldop-jenkins \
   -p 8080:8080 \
   -e LDAP_SERVER="ldap:389" \
   -e LDAP_ROOTDN="${LDAP_FULL_DOMAIN}" \
@@ -94,7 +95,7 @@ The following command will run adop-jenkins and connect it to OpenLDAP
   -e LDAP_DISABLE_MAIL_ADDRESS_RESOLVER="false" \
   -e LDAP_DISPLAY_NAME_ATTRIBUTE_NAME="displayName" \
   -e LDAP_MAIL_ADDRESS_ATTRIBUTE_NAME="mail" \
-  -d accenture/adop-jenkins:VERSION
+  -d liatrio/ldop-jenkins:VERSION
 ```
 
 # License
@@ -111,9 +112,10 @@ Support for older versions (down to 1.6) is provided on a best-effort basis.
 Documentation for this image is available in the [Jenkins documentation page](https://wiki.jenkins-ci.org/display/JENKINS/Home).
 
 ## Issues
-If you have any problems with or questions about this image, please contact us through a [GitHub issue](https://github.com/liatrio/adop-jenkins/issues).
+If you have any problems with or questions about this image, please contact us through a [GitHub issue](https://github.com/liatrio/ldop-jenkins/issues).
 
 ## Contribute
 You are invited to contribute new features, fixes, or updates, large or small; we are always thrilled to receive pull requests, and do our best to process them as fast as we can.
 
-Before you start to code, we recommend discussing your plans through a [GitHub issue](https://github.com/Accenture/adop-jenkins/issues), especially for more ambitious contributions. This gives other contributors a chance to point you in the right direction, give you feedback on your design, and help you find out if someone else is working on the same thing.
+Before you start to code, we recommend discussing your plans through a [GitHub issue](https://github.com/liatrio/ldop-jenkins/issues), 
+especially for more ambitious contributions. This gives other contributors a chance to point you in the right direction, give you feedback on your design, and help you find out if someone else is working on the same thing.
