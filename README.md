@@ -1,13 +1,13 @@
 # Supported tags and respective `Dockerfile` links
 
-- [`2.2.4` (*0.2.0/Dockerfile*)](https://github.com/liatrio/ldop-jenkins/blob/0.2.0/Dockerfile)
+- [`2.2.7` (*0.2.0/Dockerfile*)](https://github.com/liatrio/ldop-jenkins/blob/0.2.0/Dockerfile)
 
 # What is ldop-jenkins?
 
 ldop-jenkins is a wrapper for the Jenkins image. It has primarily been built to perform extended configuration.
 Jenkins is an open source automation tool.
 
-VERSION 2.2.6
+VERSION 2.2.7
 
 # How to use this image
 
