@@ -169,9 +169,9 @@ pipeline {
             script {
                 if (CHANGED == "YES") {
                     if (STATUS == "SUCCESS") {
-                        COLOR = "00FF00"
+                        COLOR = "3AA552"
                     } else {
-                        COLOR = "FF0000"
+                        COLOR = "CF1318"
                     }
 
                     RESULT = formatSlackOutput(SUBJECT, env.JOB_URL, currentBuild.changeSets, STATUS)
