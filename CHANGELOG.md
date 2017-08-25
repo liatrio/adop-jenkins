@@ -28,3 +28,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - updated plugins (matrix-auth, ldap)
 - added seedjob
 - added matrix security configuration
+
+## 2.2.1 - 2017-08-25
+## Added
+- logstash plugin
+- mask passwords plugin
+- added configuration for logstash plugin

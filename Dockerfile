@@ -1,6 +1,6 @@
 FROM jenkins:2.7.4
 
-LABEL maintainer Liatrio 
+LABEL maintainer Liatrio
 
 ENV GERRIT_HOST_NAME gerrit
 ENV GERRIT_PORT 8080
@@ -18,6 +18,7 @@ COPY resources/m2/ /usr/share/jenkins/ref/.m2
 COPY resources/entrypoint.sh /entrypoint.sh
 COPY resources/scriptApproval.xml /usr/share/jenkins/ref/
 COPY resources/maven-global-settings-files.xml /usr/share/jenkins/ref/org.jenkinsci.plugins.configfiles.GlobalConfigFiles.xml
+COPY resources/logstash-settings.xml /var/jenkins_home/jenkins.plugins.logstash.LogstashInstallation.xml
 COPY resources/latest-artifact.sh /var/jenkins_home/
 
 # Reprotect
