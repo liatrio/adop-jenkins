@@ -34,7 +34,7 @@ pipeline {
                     }
 
                     if (doesVersionExist('liatrio', 'ldop-jenkins', TAG)) {
-                        error("LDOP Gerrit version already exists! Aborting...")
+                        error("LDOP Jenkins version already exists! Aborting...")
                     }
                 }
             }
