@@ -1,6 +1,6 @@
 # Supported tags and respective `Dockerfile` links
 
-- [`2.2.7` (*0.2.0/Dockerfile*)](https://github.com/liatrio/ldop-jenkins/blob/0.2.0/Dockerfile)
+- [`2.3.1` (*0.2.0/Dockerfile*)](https://github.com/liatrio/ldop-jenkins/blob/0.2.0/Dockerfile)
 
 # What is ldop-jenkins?
 
