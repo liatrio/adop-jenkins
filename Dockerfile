@@ -1,6 +1,8 @@
 FROM jenkins:2.7.4
 
-LABEL maintainer Liatrio 
+LABEL maintainer Liatrio \
+      version = "2.4.0"
+
 
 ENV GERRIT_HOST_NAME gerrit
 ENV GERRIT_PORT 8080
