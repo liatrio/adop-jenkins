@@ -1,7 +1,7 @@
 FROM jenkins:2.7.4
 
 LABEL maintainer Liatrio \
-      version = "2.4.0"
+      version = "2.4.1"
 
 
 ENV GERRIT_HOST_NAME gerrit
