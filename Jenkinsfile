@@ -130,6 +130,10 @@ pipeline {
                 script { CHANGED = "NO" }
                 sh "docker tag liatrio/ldop-jenkins:${env.BRANCH_NAME} liatrio/ldop-jenkins:latest"
                 sh "docker push liatrio/ldop-jenkins:latest"
+                script {
+                    if ( env.BRANCH_NAME == 'master' )
+                        sh "docker push liatrio/ldop-jenkins:${containerVersion}"
+                }
             }
             post {
                 success { script { STATUS = "SUCCESS" } }
