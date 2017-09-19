@@ -1,4 +1,4 @@
-FROM jenkins:2.7.4
+FROM jenkins:2.7.5
 
 LABEL maintainer Liatrio
 LABEL version = "2.4.1"
