@@ -1,7 +1,7 @@
-FROM jenkins:2.7.5
+FROM jenkins:2.7.4
 
 LABEL maintainer Liatrio
-LABEL version = "2.4.1"
+LABEL version = "2.4.2"
 
 
 ENV GERRIT_HOST_NAME gerrit
